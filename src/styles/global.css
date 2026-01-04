@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-body text-gray-800 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply block py-2 px-4 rounded-lg transition-all duration-200 text-gray-600 hover:bg-warm-100 hover:text-forest;
+  }
+  
+  .sidebar-link.active {
+    @apply bg-warm-200 text-forest font-medium;
+  }
+  
+  .card {
+    @apply rounded-2xl p-6 shadow-sm;
+  }
+  
+  .card-pink {
+    @apply bg-gradient-to-br from-blush to-pink-50;
+  }
+  
+  .card-green {
+    @apply bg-gradient-to-br from-sage to-emerald-50;
+  }
+  
+  .card-blue {
+    @apply bg-gradient-to-br from-sky to-blue-50;
+  }
+  
+  .card-peach {
+    @apply bg-gradient-to-br from-peach to-orange-50;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-warm-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-warm-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-warm-400;
+}

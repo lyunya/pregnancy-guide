@@ -1,0 +1,88 @@
+---
+interface Props {
+  currentMonth?: number;
+}
+
+const { currentMonth } = Astro.props;
+
+const trimesters = [
+  {
+    name: 'First Trimester',
+    months: [
+      { number: 1, title: 'Month 1', weeks: 'Weeks 1-4' },
+      { number: 2, title: 'Month 2', weeks: 'Weeks 5-8' },
+      { number: 3, title: 'Month 3', weeks: 'Weeks 9-13' },
+    ],
+  },
+  {
+    name: 'Second Trimester',
+    months: [
+      { number: 4, title: 'Month 4', weeks: 'Weeks 14-17' },
+      { number: 5, title: 'Month 5', weeks: 'Weeks 18-22' },
+      { number: 6, title: 'Month 6', weeks: 'Weeks 23-27' },
+    ],
+  },
+  {
+    name: 'Third Trimester',
+    months: [
+      { number: 7, title: 'Month 7', weeks: 'Weeks 28-31' },
+      { number: 8, title: 'Month 8', weeks: 'Weeks 32-35' },
+      { number: 9, title: 'Month 9', weeks: 'Weeks 36-40' },
+    ],
+  },
+];
+---
+
+<div class="p-6">
+  <!-- Logo / Title -->
+  <a href="/" class="block mb-8">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-coral to-pink-400 flex items-center justify-center">
+        <span class="text-white text-xl">🤰</span>
+      </div>
+      <div>
+        <h1 class="font-display text-xl font-semibold text-forest">Pregnancy</h1>
+        <p class="text-sm text-gray-500">Guide</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Navigation -->
+  <nav class="space-y-6">
+    {trimesters.map((trimester, trimesterIndex) => (
+      <div>
+        <h2 class="font-display text-sm font-semibold text-plum uppercase tracking-wider mb-3 px-2">
+          {trimester.name}
+        </h2>
+        <ul class="space-y-1">
+          {trimester.months.map((month) => (
+            <li>
+              <a 
+                href={`/month/${month.number}`}
+                class:list={[
+                  'sidebar-link flex items-center gap-3',
+                  { 'active': currentMonth === month.number }
+                ]}
+              >
+                <span class="w-8 h-8 rounded-full bg-warm-100 flex items-center justify-center text-sm font-medium text-forest">
+                  {month.number}
+                </span>
+                <div>
+                  <span class="block text-sm font-medium">{month.title}</span>
+                  <span class="block text-xs text-gray-400">{month.weeks}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </nav>
+
+  <!-- Footer -->
+  <div class="mt-10 pt-6 border-t border-warm-200">
+    <p class="text-xs text-gray-400 text-center">
+      Always consult with your healthcare provider for personalized advice.
+    </p>
+  </div>
+</div>
