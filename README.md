@@ -19,16 +19,22 @@ This site was **vibe coded** using [Claude Opus 4.5](https://www.anthropic.com/c
 - **Partner Support** — Tips for partners on how to help and be supportive
 - **Mobile-First Design** — Fully responsive with a slide-out navigation menu
 - **Beautiful UI** — Warm, welcoming color palette with a distinctive design
+- **View Transitions** — Smooth page navigation with Astro's View Transitions API
+- **Smart Prefetching** — Links are prefetched for instant navigation
 
 ## Tech Stack
 
-- [Astro](https://astro.build) — Static site generator
+- [Astro 5](https://astro.build) — Next-gen static site generator with View Transitions
 - [Tailwind CSS](https://tailwindcss.com) — Utility-first CSS framework
 - [TypeScript](https://www.typescriptlang.org/) — Type-safe JavaScript
+- Node.js 22+ (see `.nvmrc`)
 
 ## Getting Started
 
 ```bash
+# Use correct Node version (if using nvm)
+nvm use
+
 # Install dependencies
 npm install
 
@@ -42,7 +48,7 @@ npm run build
 npm run preview
 ```
 
-The development server runs at `http://localhost:3000`
+The development server runs at `http://localhost:4321`
 
 ## Project Structure
 
@@ -53,7 +59,7 @@ src/
 ├── data/
 │   └── months.ts            # Pregnancy data for all 9 months
 ├── layouts/
-│   └── Layout.astro         # Main layout with responsive design
+│   └── Layout.astro         # Main layout with View Transitions
 ├── pages/
 │   ├── index.astro          # Homepage
 │   └── month/
@@ -64,6 +70,23 @@ public/
 ├── favicon.svg
 └── pregnancy-illustration.svg
 ```
+
+## Path Aliases
+
+This project uses TypeScript path aliases for cleaner imports:
+
+- `@/*` → `src/*`
+- `@components/*` → `src/components/*`
+- `@layouts/*` → `src/layouts/*`
+- `@data/*` → `src/data/*`
+
+## Astro 5 Features Used
+
+- **View Transitions** — Smooth, SPA-like navigation between pages
+- **`transition:persist`** — Keep sidebar and image stable across navigations
+- **Prefetching** — Automatic link prefetching for instant page loads
+- **TypeScript Path Aliases** — Clean, maintainable imports
+- **Typed `getStaticPaths`** — Full type safety for dynamic routes
 
 ## License
 

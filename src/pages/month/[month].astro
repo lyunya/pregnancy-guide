@@ -1,23 +1,22 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { monthsData } from '../../data/months';
+import type { GetStaticPaths } from 'astro';
+import Layout from '@layouts/Layout.astro';
+import { monthsData } from '@data/months';
 
-export function getStaticPaths() {
+export const getStaticPaths = (() => {
   return monthsData.map((month) => ({
     params: { month: month.number.toString() },
+    props: { data: month },
   }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  data: typeof monthsData[number];
 }
 
-const { month } = Astro.params;
-const monthNumber = parseInt(month);
-const data = monthsData.find((m) => m.number === monthNumber);
-
-if (!data) {
-  return Astro.redirect('/');
-}
-
-const prevMonth = monthNumber > 1 ? monthNumber - 1 : null;
-const nextMonth = monthNumber < 9 ? monthNumber + 1 : null;
+const { data } = Astro.props;
+const prevMonth = data.number > 1 ? data.number - 1 : null;
+const nextMonth = data.number < 9 ? data.number + 1 : null;
 ---
 
 <Layout title={`Month ${data.number}: ${data.title}`} currentMonth={data.number}>
@@ -83,7 +82,7 @@ const nextMonth = monthNumber < 9 ? monthNumber + 1 : null;
         <span>•</span>
         <span>{data.weeks}</span>
       </div>
-      <h1 class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+      <h1 class="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900" transition:name={`month-title-${data.number}`}>
         Month {data.number}: {data.title}
       </h1>
     </div>
