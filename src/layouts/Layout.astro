@@ -158,6 +158,27 @@ const { title, currentMonth } = Astro.props;
           document.body.style.overflow = '';
         }
 
+        // Instantly close menu without animation (for View Transitions)
+        function closeMenuInstant() {
+          if (mobileSidebar) {
+            mobileSidebar.style.transition = 'none';
+            mobileSidebar.classList.add('-translate-x-full');
+          }
+          if (sidebarOverlay) {
+            sidebarOverlay.style.transition = 'none';
+            sidebarOverlay.classList.add('opacity-0', 'pointer-events-none');
+          }
+          menuIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+          document.body.style.overflow = '';
+          
+          // Re-enable transitions after a frame
+          requestAnimationFrame(() => {
+            if (mobileSidebar) mobileSidebar.style.transition = '';
+            if (sidebarOverlay) sidebarOverlay.style.transition = '';
+          });
+        }
+
         menuToggle?.addEventListener('click', () => {
           const isOpen = !mobileSidebar?.classList.contains('-translate-x-full');
           if (isOpen) {
@@ -170,21 +191,24 @@ const { title, currentMonth } = Astro.props;
         sidebarClose?.addEventListener('click', closeMenu);
         sidebarOverlay?.addEventListener('click', closeMenu);
 
-        // Close menu on navigation
-        mobileSidebar?.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', closeMenu);
-        });
-
         // Close menu on escape key
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             closeMenu();
           }
         });
+
+        // Store closeMenuInstant globally for View Transitions
+        (window as any).__closeMenuInstant = closeMenuInstant;
       }
 
       // Run on initial load
       initMenu();
+
+      // Close sidebar instantly before View Transition starts
+      document.addEventListener('astro:before-preparation', () => {
+        (window as any).__closeMenuInstant?.();
+      });
 
       // Re-run after View Transitions navigation
       document.addEventListener('astro:after-swap', initMenu);
