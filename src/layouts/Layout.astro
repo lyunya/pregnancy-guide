@@ -58,8 +58,29 @@ const { title, currentMonth } = Astro.props;
     <!-- Mobile Sidebar -->
     <aside 
       id="mobile-sidebar"
-      class="lg:hidden fixed inset-0 bg-white z-50 transform -translate-x-full transition-transform duration-300 overflow-y-auto pt-16"
+      class="lg:hidden fixed inset-0 bg-white z-50 transform -translate-x-full transition-transform duration-300 overflow-y-auto"
     >
+      <!-- Close button header -->
+      <div class="sticky top-0 bg-white border-b border-warm-200 px-4 py-3 flex items-center justify-between z-10">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-coral to-pink-400 flex items-center justify-center">
+            <span class="text-white text-lg">🤰</span>
+          </div>
+          <div>
+            <span class="font-display text-lg font-semibold text-forest">Pregnancy</span>
+            <span class="text-sm text-gray-500 ml-1">Guide</span>
+          </div>
+        </a>
+        <button 
+          id="sidebar-close"
+          class="p-2 rounded-lg hover:bg-warm-100 transition-colors"
+          aria-label="Close menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <Sidebar currentMonth={currentMonth} />
     </aside>
 
@@ -115,6 +136,7 @@ const { title, currentMonth } = Astro.props;
       // Initialize menu functionality
       function initMenu() {
         const menuToggle = document.getElementById('menu-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
         const mobileSidebar = document.getElementById('mobile-sidebar');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const menuIcon = document.getElementById('menu-icon');
@@ -145,6 +167,7 @@ const { title, currentMonth } = Astro.props;
           }
         });
 
+        sidebarClose?.addEventListener('click', closeMenu);
         sidebarOverlay?.addEventListener('click', closeMenu);
 
         // Close menu on navigation
