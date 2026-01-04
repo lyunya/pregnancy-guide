@@ -19,6 +19,10 @@ export interface MonthData {
     items: string[];
   };
   thingsToAvoid: string[];
+  partnerSupport: {
+    description: string;
+    tips: string[];
+  };
 }
 
 export const monthsData: MonthData[] = [
@@ -72,7 +76,18 @@ export const monthsData: MonthData[] = [
       "Unpasteurized dairy products",
       "High-mercury fish",
       "Excessive caffeine (limit to 200mg/day)"
-    ]
+    ],
+    partnerSupport: {
+      description: "This is an exciting and sometimes anxious time. Your support and understanding mean everything right now.",
+      tips: [
+        "Be present when she takes the pregnancy test",
+        "Learn about early pregnancy together",
+        "Help research and choose a healthcare provider",
+        "Start adjusting lifestyle habits together (less alcohol, healthier eating)",
+        "Be patient with mood swings and emotional changes",
+        "Celebrate this milestone together, even if keeping it private for now"
+      ]
+    }
   },
   {
     number: 2,
@@ -126,7 +141,18 @@ export const monthsData: MonthData[] = [
       "Certain medications (check with doctor)",
       "Cat litter (toxoplasmosis risk)",
       "Raw eggs and deli meats"
-    ]
+    ],
+    partnerSupport: {
+      description: "Morning sickness can be rough. Your patience and practical help make a huge difference during this challenging time.",
+      tips: [
+        "Keep crackers and ginger ale stocked for morning sickness",
+        "Take over cooking if smells trigger nausea",
+        "Attend the first prenatal appointment together",
+        "Help with household chores when she's exhausted",
+        "Be understanding about food aversions and cravings",
+        "Offer foot rubs and back massages"
+      ]
+    }
   },
   {
     number: 3,
@@ -180,7 +206,18 @@ export const monthsData: MonthData[] = [
       "Lying flat on back for long periods",
       "Stress and anxiety",
       "Skipping meals"
-    ]
+    ],
+    partnerSupport: {
+      description: "As you prepare to share the news with others, be her rock and help manage the excitement together.",
+      tips: [
+        "Help plan how and when to announce the pregnancy",
+        "Attend screening appointments for moral support",
+        "Start discussing baby names (just for fun!)",
+        "Help her shop for comfortable maternity basics",
+        "Listen to baby's heartbeat together—it's magical",
+        "Research childbirth and parenting classes together"
+      ]
+    }
   },
   {
     number: 4,
@@ -234,7 +271,18 @@ export const monthsData: MonthData[] = [
       "Skipping dental check-ups",
       "Overexertion during exercise",
       "Standing for long periods"
-    ]
+    ],
+    partnerSupport: {
+      description: "Energy is returning! This is a great time to tackle projects together and enjoy this special phase.",
+      tips: [
+        "Take bump photos to document the journey",
+        "Plan a babymoon getaway together",
+        "Start discussing nursery ideas and setup",
+        "Go on regular date nights while you can",
+        "Help apply stretch mark cream (bonding moment!)",
+        "Read pregnancy books or apps together"
+      ]
+    }
   },
   {
     number: 5,
@@ -288,7 +336,18 @@ export const monthsData: MonthData[] = [
       "High-sodium foods",
       "Unsafe lifting techniques",
       "Comparing yourself to others"
-    ]
+    ],
+    partnerSupport: {
+      description: "Baby can hear now! Start bonding with your little one and share in the excitement of feeling movement.",
+      tips: [
+        "Talk and read to the baby—they can hear you!",
+        "Be there for the anatomy scan—it's amazing",
+        "Feel for baby kicks together",
+        "Help with leg cramp relief during the night",
+        "Give regular back and foot massages",
+        "Start assembling a baby registry together"
+      ]
+    }
   },
   {
     number: 6,
@@ -342,7 +401,18 @@ export const monthsData: MonthData[] = [
       "Skipping kick counts",
       "Stressful situations",
       "Heavy housework"
-    ]
+    ],
+    partnerSupport: {
+      description: "She may be uncomfortable as baby grows. Help make her as comfortable as possible.",
+      tips: [
+        "Sign up for childbirth classes together",
+        "Help create the birth plan",
+        "Take over heavy household tasks",
+        "Accompany her to the glucose test",
+        "Help research pediatricians",
+        "Plan and host the baby shower if appropriate"
+      ]
+    }
   },
   {
     number: 7,
@@ -396,7 +466,18 @@ export const monthsData: MonthData[] = [
       "Eating large meals",
       "Ignoring reduced movement",
       "Over-scheduling yourself"
-    ]
+    ],
+    partnerSupport: {
+      description: "The finish line is in sight! Help prepare for baby's arrival and keep her comfortable.",
+      tips: [
+        "Set up and organize the nursery together",
+        "Attend childbirth classes—learn breathing techniques",
+        "Tour the hospital or birthing center together",
+        "Start packing the hospital bag",
+        "Practice the route to the hospital",
+        "Give plenty of reassurance and emotional support"
+      ]
+    }
   },
   {
     number: 8,
@@ -450,7 +531,18 @@ export const monthsData: MonthData[] = [
       "Ignoring labor signs",
       "Skipping appointments",
       "Stress and anxiety"
-    ]
+    ],
+    partnerSupport: {
+      description: "Final preparations are underway. Help tackle the to-do list and keep stress levels low.",
+      tips: [
+        "Install the car seat (get it inspected if needed)",
+        "Help prepare freezer meals for after baby arrives",
+        "Finish any remaining nursery setup",
+        "Review the birth plan together",
+        "Know the signs of labor",
+        "Keep the car fueled and ready to go"
+      ]
+    }
   },
   {
     number: 9,
@@ -504,6 +596,17 @@ export const monthsData: MonthData[] = [
       "Overexertion",
       "Missing appointments",
       "Panic—you've got this!"
-    ]
+    ],
+    partnerSupport: {
+      description: "It's almost time! Be ready to spring into action and be her calm, supportive rock during labor.",
+      tips: [
+        "Keep your phone charged and nearby at all times",
+        "Know the signs of labor and when to go to the hospital",
+        "Be her advocate during labor and delivery",
+        "Stay calm—she needs your steady presence",
+        "Capture first moments with baby (if she wants)",
+        "Be ready to support breastfeeding and early bonding"
+      ]
+    }
   }
 ];
