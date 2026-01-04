@@ -1,43 +1,74 @@
-# Astro Starter Kit: Minimal
+# Pregnancy Guide
 
-```sh
-npm create astro@latest -- --template minimal
+A beautiful, mobile-responsive pregnancy guide website that provides month-by-month information for expecting parents.
+
+## About This Project
+
+This site was **vibe coded** using [Claude Opus 4.5](https://www.anthropic.com/claude) — an experiment in building a complete, functional website through natural conversation with AI. The entire codebase, from design decisions to implementation details, was generated collaboratively through prompts and iteration.
+
+**Created by:** Leon Marbukh
+
+## Features
+
+- **Month-by-Month Guide** — Detailed information for all 9 months of pregnancy
+- **Baby's Development** — Track your baby's growth with size comparisons and key milestones
+- **Body Changes** — Understand the symptoms and changes happening throughout pregnancy
+- **Care & Wellness Tips** — Practical advice for staying healthy
+- **Medical Checkups** — Know what tests and appointments to expect
+- **Things to Avoid** — Important safety information for each stage
+- **Partner Support** — Tips for partners on how to help and be supportive
+- **Mobile-First Design** — Fully responsive with a slide-out navigation menu
+- **Beautiful UI** — Warm, welcoming color palette with a distinctive design
+
+## Tech Stack
+
+- [Astro](https://astro.build) — Static site generator
+- [Tailwind CSS](https://tailwindcss.com) — Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org/) — Type-safe JavaScript
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The development server runs at `http://localhost:3000`
 
-## 🚀 Project Structure
+## Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/
+│   └── Sidebar.astro        # Navigation sidebar
+├── data/
+│   └── months.ts            # Pregnancy data for all 9 months
+├── layouts/
+│   └── Layout.astro         # Main layout with responsive design
+├── pages/
+│   ├── index.astro          # Homepage
+│   └── month/
+│       └── [month].astro    # Dynamic month pages
+├── styles/
+│   └── global.css           # Global styles and custom fonts
+public/
+├── favicon.svg
+└── pregnancy-illustration.svg
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## License
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+MIT
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Built with ❤️ by Leon Marbukh
