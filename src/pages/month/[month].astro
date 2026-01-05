@@ -20,7 +20,7 @@ const nextMonth = data.number < 9 ? data.number + 1 : null;
 ---
 
 <Layout title={`Month ${data.number}: ${data.title}`} currentMonth={data.number}>
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-4xl mx-auto pb-24 sm:pb-0">
     <!-- Navigation Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8">
       <a 
@@ -209,92 +209,46 @@ const nextMonth = data.number < 9 ? data.number + 1 : null;
       </ul>
     </div>
 
-    <!-- Bottom Navigation -->
-    <div class="flex items-center justify-between pt-4 sm:pt-6 border-t border-warm-200">
-      {prevMonth ? (
-        <a 
-          href={`/month/${prevMonth}`}
-          class="inline-flex items-center gap-2 text-gray-500 hover:text-forest transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          <div class="text-left">
-            <span class="block text-xs text-gray-400">Previous</span>
-            <span class="font-medium text-sm sm:text-base">Month {prevMonth}</span>
-          </div>
-        </a>
-      ) : (
-        <div></div>
-      )}
-      
-      {nextMonth ? (
-        <a 
-          href={`/month/${nextMonth}`}
-          class="inline-flex items-center gap-2 text-gray-500 hover:text-forest transition-colors"
-        >
+    <!-- Bottom Navigation - Fixed on mobile, always visible -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-warm-200 px-4 py-3 sm:px-0 sm:py-0 sm:static sm:border-t-0 sm:bg-transparent sm:mt-4 sm:pt-6 shadow-lg sm:shadow-none z-50">
+      <div class="flex items-center justify-between max-w-4xl mx-auto">
+        {prevMonth ? (
+          <a 
+            href={`/month/${prevMonth}`}
+            class="inline-flex items-center gap-2 text-gray-500 hover:text-forest transition-colors px-3 py-2 rounded-lg hover:bg-warm-100"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <div class="text-left">
+              <span class="block text-xs text-gray-400">Previous</span>
+              <span class="font-medium text-sm sm:text-base">Month {prevMonth}</span>
+            </div>
+          </a>
+        ) : (
+          <div></div>
+        )}
+        
+        {nextMonth ? (
+          <a 
+            href={`/month/${nextMonth}`}
+            class="inline-flex items-center gap-2 text-gray-500 hover:text-forest transition-colors px-3 py-2 rounded-lg hover:bg-warm-100"
+          >
+            <div class="text-right">
+              <span class="block text-xs text-gray-400">Next</span>
+              <span class="font-medium text-sm sm:text-base">Month {nextMonth}</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ) : (
           <div class="text-right">
-            <span class="block text-xs text-gray-400">Next</span>
-            <span class="font-medium text-sm sm:text-base">Month {nextMonth}</span>
+            <span class="block text-xs text-gray-400">Congratulations!</span>
+            <span class="font-medium text-coral text-sm sm:text-base">Ready to meet your baby! 🎉</span>
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      ) : (
-        <div class="text-right">
-          <span class="block text-xs text-gray-400">Congratulations!</span>
-          <span class="font-medium text-coral text-sm sm:text-base">Ready to meet your baby! 🎉</span>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   </div>
-
-  <script define:vars={{ prevMonth, nextMonth }}>
-    // Swipe navigation for mobile using swiped-events library
-    function initSwipeNavigation() {
-      // Only enable on mobile devices
-      if (window.innerWidth >= 1024) return; // lg breakpoint
-      
-      const container = document.querySelector('main') || document.body;
-      if (!container) return;
-      
-      function handleSwipeLeft() {
-        if (nextMonth) {
-          const nextLink = document.querySelector(`a[href="/month/${nextMonth}"]`);
-          if (nextLink instanceof HTMLAnchorElement) {
-            nextLink.click();
-          }
-        }
-      }
-      
-      function handleSwipeRight() {
-        if (prevMonth) {
-          const prevLink = document.querySelector(`a[href="/month/${prevMonth}"]`);
-          if (prevLink instanceof HTMLAnchorElement) {
-            prevLink.click();
-          }
-        }
-      }
-      
-      // Listen for swipe events from swiped-events library
-      container.addEventListener('swiped-left', handleSwipeLeft);
-      container.addEventListener('swiped-right', handleSwipeRight);
-      
-      // Return cleanup function
-      return () => {
-        container.removeEventListener('swiped-left', handleSwipeLeft);
-        container.removeEventListener('swiped-right', handleSwipeRight);
-      };
-    }
-    
-    // Initialize on load
-    let cleanup = initSwipeNavigation();
-    
-    // Re-initialize after View Transitions
-    document.addEventListener('astro:after-swap', () => {
-      if (cleanup) cleanup();
-      cleanup = initSwipeNavigation();
-    });
-  </script>
 </Layout>
