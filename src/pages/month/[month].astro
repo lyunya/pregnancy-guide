@@ -38,7 +38,7 @@ const nextMonth = data.number < 9 ? data.number + 1 : null;
         {prevMonth ? (
           <a 
             href={`/month/${prevMonth}`}
-            class="inline-flex items-center gap-1 px-2 py-1.5 sm:px-4 sm:py-2 text-gray-500 hover:text-forest transition-colors text-sm"
+            class="inline-flex items-center gap-1 px-2 py-1.5 sm:px-4 sm:py-2 bg-white rounded-full shadow-sm hover:shadow-md transition-all text-gray-700 hover:text-forest text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -249,4 +249,55 @@ const nextMonth = data.number < 9 ? data.number + 1 : null;
       )}
     </div>
   </div>
+
+  <script define:vars={{ prevMonth, nextMonth }}>
+    // Swipe navigation for mobile
+    (function() {
+      // Only enable on mobile devices
+      if (window.innerWidth >= 1024) return; // lg breakpoint
+      
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const minSwipeDistance = 50; // Minimum distance for a swipe
+      const maxVerticalDistance = 100; // Max vertical movement to still count as horizontal swipe
+      
+      const container = document.querySelector('main') || document.body;
+      
+      function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }
+      
+      function handleTouchEnd(e) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
+        
+        const horizontalDistance = touchEndX - touchStartX;
+        const verticalDistance = Math.abs(touchEndY - touchStartY);
+        
+        // Only trigger if horizontal swipe is significant and vertical movement is minimal
+        if (Math.abs(horizontalDistance) > minSwipeDistance && verticalDistance < maxVerticalDistance) {
+          // Swipe left (next month)
+          if (horizontalDistance < 0 && nextMonth) {
+            e.preventDefault();
+            const nextLink = document.querySelector(`a[href="/month/${nextMonth}"]`);
+            if (nextLink instanceof HTMLAnchorElement) {
+              nextLink.click();
+            }
+          }
+          // Swipe right (previous month)
+          else if (horizontalDistance > 0 && prevMonth) {
+            e.preventDefault();
+            const prevLink = document.querySelector(`a[href="/month/${prevMonth}"]`);
+            if (prevLink instanceof HTMLAnchorElement) {
+              prevLink.click();
+            }
+          }
+        }
+      }
+      
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    })();
+  </script>
 </Layout>
