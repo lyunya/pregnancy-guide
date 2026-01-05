@@ -20,6 +20,9 @@ const { title, currentMonth } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} | Pregnancy Guide</title>
     <ViewTransitions />
+    <script>
+      import 'swiped-events';
+    </script>
   </head>
   <body class="bg-cream min-h-screen">
     <!-- Mobile Header -->
