@@ -20,7 +20,7 @@
 
 @layer components {
   .sidebar-link {
-    @apply block py-2 px-4 rounded-lg transition-all duration-200 text-gray-600 hover:bg-warm-100 hover:text-forest;
+    @apply block py-2 px-4 rounded-lg transition-all duration-200 text-gray-600 sm:hover:bg-warm-100 hover:text-forest;
   }
   
   .sidebar-link.active {
